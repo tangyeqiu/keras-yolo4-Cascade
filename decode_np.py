@@ -105,7 +105,19 @@ class Decode(object):
         random.shuffle(colors)
         random.seed(None)
 
+        count = 0
+        count_dog = 0
+        count_cat = 0
         for box, score, cl in zip(boxes, scores, classes):
+            if self.all_classes[cl] == 'person' or self.all_classes[cl] == 'dog' or self.all_classes[cl] == 'cat':
+                if self.all_classes[cl] == 'person':
+                    count += 1
+                if self.all_classes[cl] == 'dog':
+                    count_dog += 1
+                if self.all_classes[cl] == 'cat':
+                    count_cat += 1
+            else:
+                continue
             x0, y0, x1, y1 = box
             left = max(0, np.floor(x0 + 0.5).astype(int))
             top = max(0, np.floor(y0 + 0.5).astype(int))
@@ -120,6 +132,12 @@ class Decode(object):
             cv2.rectangle(image, (left, top), (left + t_size[0], top - t_size[1] - 3), bbox_color, -1)
             cv2.putText(image, bbox_mess, (left, top - 2), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, (0, 0, 0), 1, lineType=cv2.LINE_AA)
+        cv2.putText(image, text='Number of person(s): ' + str(count), org=(3, 35), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=0.50, color=(255, 0, 0), thickness=2)
+        cv2.putText(image, text='Number of dog(s): ' + str(count_dog), org=(3, 55), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=0.50, color=(255, 0, 0), thickness=2)
+        cv2.putText(image, text='Number of cat(s): ' + str(count_cat), org=(3, 75), fontFace=cv2.FONT_HERSHEY_SIMPLEX,
+                    fontScale=0.50, color=(255, 0, 0), thickness=2)
 
     def process_image(self, img):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -141,6 +159,7 @@ class Decode(object):
         boxes, scores, classes = self._yolo_out([a1, a2, a3], shape)
 
         return boxes, scores, classes
+
 
 
     def _sigmoid(self, x):
@@ -269,5 +288,3 @@ class Decode(object):
         boxes[:, [2, 3]] = boxes[:, [0, 1]] + boxes[:, [2, 3]]
 
         return boxes, scores, classes
-
-
