@@ -23,7 +23,3 @@ Inference
 python test.py
 ```
 ---
-
-### Todo
-
-Debug train code with CIoU loss. Loss code from [https://github.com/david8862/keras-YOLOv3-model-set](https://github.com/david8862/keras-YOLOv3-model-set).
