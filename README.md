@@ -1,24 +1,6 @@
 # keras-yolo4
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
-
-# 请使用更完善的版本:
-
-# [https://github.com/miemie2013/Keras-YOLOv4](https://github.com/miemie2013/Keras-YOLOv4)
-
-# Please visit here for more complete model:
-
-# [https://github.com/miemie2013/Keras-YOLOv4](https://github.com/miemie2013/Keras-YOLOv4)
-
-## Introduction
-
-A Keras implementation of YOLOv4 (Tensorflow backend) inspired by [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet).
-
-Frame code from [https://github.com/qqwweee/keras-yolo3](https://github.com/qqwweee/keras-yolo3).
-
-![](yolo4.png)
-
----
+抄作业，加入Basler相机适配以及人脸识别功能。
 
 ## Quick Start
 
